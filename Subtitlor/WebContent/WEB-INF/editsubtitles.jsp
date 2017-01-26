@@ -5,6 +5,9 @@
 </head>
 <body>
 	<%@ include file="header.jsp" %>
+	<c:if test="${ !empty file }">
+	<p><c:out value="${ file }" /><br>
+	</c:if>
     <form method="post" action="/Subtitlor/edit">    
         <input type="submit" style="position:fixed; top: 10px; right: 10px;" />
 	    <table>
