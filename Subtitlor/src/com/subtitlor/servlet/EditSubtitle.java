@@ -21,7 +21,7 @@ public class EditSubtitle extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String filePath = getServletContext().getRealPath("WEB-INF/../") + request.getParameter("file");
 		HttpSession session = request.getSession();
-		session.setAttribute("fileName", filePath);
+		session.setAttribute("filePath", filePath);
 		try {
 			SubtitlesHandler subtitles = new SubtitlesHandler(filePath);
 			request.setAttribute("subtitles", subtitles.getSubtitles());
@@ -34,12 +34,14 @@ public class EditSubtitle extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String fileName = (String) request.getSession().getAttribute("fileName");
-		String filePath = getServletContext().getRealPath("WEB-INF/../");
+		String filePath = (String) request.getSession().getAttribute("filePath");
+		//String filePath = getServletContext().getRealPath("WEB-INF/../");
+		//System.out.println("line 39 : " + fileName);
+		System.out.println("line 40 :  " + filePath);
 		
 		try {
 			SubtitlesHandler subtitles = new SubtitlesHandler(filePath);
-			request.setAttribute("subtitles", subtitles.getSubtitles());
+			//request.setAttribute("subtitles", subtitles.getSubtitles());
 			subtitles.copySubtitles();
 			ArrayList<String> translation = subtitles.getTranslatedSubtitles();			
 			for (int i = 0; i < subtitles.getSubtitles().size(); i++) {
@@ -47,6 +49,8 @@ public class EditSubtitle extends HttpServlet {
 					translation.set(i, request.getParameter("line" + Integer.toString(i)));
 			}
 			subtitles.setTranslatedSubtitles(translation);
+			
+			/*
 			fileName = fileName.replace(".srt", "-new.srt");
 			PrintWriter pWriter = new PrintWriter(new FileOutputStream(fileName));
 			for (int i = 0; i < subtitles.getSubtitles().size(); i++)
@@ -54,7 +58,8 @@ public class EditSubtitle extends HttpServlet {
 				pWriter.println(translation.get(i));
 			}
 			pWriter.close();
-			System.out.println(filePath + fileName);
+			*/
+			//System.out.println(filePath + fileName);
 		}
 		catch (FileNotFoundException e) {
 			e.printStackTrace();

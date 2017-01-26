@@ -22,13 +22,13 @@ public class Home extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("file", "");
+		//request.setAttribute("file", "");
 		this.getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String SAVE_PATH = getServletContext().getRealPath("WEB-INF/../");
-		System.out.println(SAVE_PATH);
+		System.out.println("Home.java ligne 31 fichier : " + SAVE_PATH);
 		Part part = request.getPart("file");
 		String fileName = getFileName(part);
 		
