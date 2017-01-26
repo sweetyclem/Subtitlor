@@ -2,8 +2,10 @@ package com.subtitlor.utilities;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class SubtitlesHandler {
@@ -38,9 +40,26 @@ public class SubtitlesHandler {
 		this.translatedSubtitles = translatedSubtitles;
 	}
 	
+	public void saveTranslation(String fileName, String filePath) throws FileNotFoundException
+	{
+		fileName = fileName.replace(".srt", "-new.srt");
+		try {
+			PrintWriter pWriter = new PrintWriter(new FileOutputStream(filePath + fileName));
+			for (int i = 0; i < this.getTranslatedSubtitles().size(); i++)
+			{
+				pWriter.println(this.getTranslatedSubtitles().get(i));
+			}
+			pWriter.close();
+		} catch (FileNotFoundException e) {
+			throw new FileNotFoundException();
+		}
+		
+	}
+	
 	public void copySubtitles()
 	{
-		this.translatedSubtitles = this.originalSubtitles;
+		ArrayList<String> tmp = this.originalSubtitles;
+		this.translatedSubtitles = tmp;
 	}
 	
 	

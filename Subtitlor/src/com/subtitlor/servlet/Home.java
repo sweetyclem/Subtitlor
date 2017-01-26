@@ -28,7 +28,6 @@ public class Home extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String SAVE_PATH = getServletContext().getRealPath("WEB-INF/../");
-		System.out.println("Home.java ligne 31 fichier : " + SAVE_PATH);
 		Part part = request.getPart("file");
 		String fileName = getFileName(part);
 		
