@@ -7,8 +7,8 @@
 	<%@ include file="header.jsp" %>
 	<h1>Editer les sous titres</h1>
     <form method="post" action="/Subtitlor/edit">    
-        <input type="submit" style="position:fixed; top: 10px; right: 10px;" />
-        <a style="position:fixed; top: 40px; right: 40px;" href="/Subtitlor/download">Télécharger</a>
+        <input type="submit" value="Enregistrer" style="position:fixed; top: 10px; right: 100px;" />
+        <a style="border: solid 1px black; padding: 3px; text-decoration: none; color:black; position:fixed; top: 40px; right: 100px;" href="/Subtitlor/download">Télécharger</a>
 	    <table>
 	        <c:forEach items="${ subtitles }" var="line" varStatus="loop">
 	        	<tr style="border: solid 1px black">
