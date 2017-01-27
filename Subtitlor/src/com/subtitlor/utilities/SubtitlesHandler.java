@@ -12,6 +12,7 @@ public class SubtitlesHandler {
 	private ArrayList<String> originalSubtitles = null;
 	private ArrayList<String> translatedSubtitles = null;
 
+	/* Read the srt file into an array */
 	public SubtitlesHandler(String fileName) throws FileNotFoundException {
 		originalSubtitles = new ArrayList<String>();
 		translatedSubtitles = new ArrayList<String>();
@@ -40,6 +41,7 @@ public class SubtitlesHandler {
 		this.translatedSubtitles = translatedSubtitles;
 	}
 	
+	/* Save the translation into a new srt file and return its name */
 	public String saveTranslation(String fileName, String filePath) throws FileNotFoundException
 	{
 		fileName = fileName.replace(".srt", "-new.srt");
@@ -56,6 +58,7 @@ public class SubtitlesHandler {
 		return fileName;
 	}
 	
+	/* Copy original subtitles to get the right numbers and timestamps */
 	public void copySubtitles()
 	{
 		ArrayList<String> tmp = this.originalSubtitles;

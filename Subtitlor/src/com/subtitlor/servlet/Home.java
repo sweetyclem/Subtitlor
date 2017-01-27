@@ -15,13 +15,9 @@ import javax.servlet.http.Part;
 public class Home extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final int BUFFER_SIZE = 10240;
-
-    public Home() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/* Set the file attribute to empty so that the page doesn't display a null object */
 		request.setAttribute("file", "");
 		this.getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
 	}
@@ -29,6 +25,7 @@ public class Home extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String SAVE_PATH = getServletContext().getRealPath("WEB-INF/../");
 		
+		/* Open, read and save the srt file */
 		Part part = request.getPart("file");
 		String fileName = getFileName(part);
 		
