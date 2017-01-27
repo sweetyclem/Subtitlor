@@ -39,6 +39,7 @@ public class EditSubtitle extends HttpServlet {
 		
 		try {
 			SubtitlesHandler subtitles = new SubtitlesHandler(filePath + fileName);	
+			@SuppressWarnings("unchecked")
 			ArrayList<String> subs = (ArrayList<String>) request.getSession().getAttribute("subtitles");
 			subtitles.copySubtitles();
 			ArrayList<String> translation = subtitles.getTranslatedSubtitles();

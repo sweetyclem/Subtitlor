@@ -18,7 +18,8 @@
 	        			</c:when>
 	        		<%-- If it's text display the original line --%>
 		        		<c:otherwise>
-		        			<c:out value="${ line }" /></td>
+		        			<c:out value="${ line }"/>
+		        		</td>
 		        		<td>
 		        		</c:otherwise>
 	        		</c:choose>
