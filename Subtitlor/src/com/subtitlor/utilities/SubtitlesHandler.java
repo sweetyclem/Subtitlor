@@ -40,7 +40,7 @@ public class SubtitlesHandler {
 		this.translatedSubtitles = translatedSubtitles;
 	}
 	
-	public void saveTranslation(String fileName, String filePath) throws FileNotFoundException
+	public String saveTranslation(String fileName, String filePath) throws FileNotFoundException
 	{
 		fileName = fileName.replace(".srt", "-new.srt");
 		try {
@@ -53,7 +53,7 @@ public class SubtitlesHandler {
 		} catch (FileNotFoundException e) {
 			throw new FileNotFoundException();
 		}
-		
+		return fileName;
 	}
 	
 	public void copySubtitles()
