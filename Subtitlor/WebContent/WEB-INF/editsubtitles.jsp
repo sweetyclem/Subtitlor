@@ -14,8 +14,10 @@
 	        		<td><c:out value="${ line }" /></td>
 	        		<td>
 	        		<c:choose>
-	        		<c:when test="${ line.matches('[^a-z]+') }">
+	        		<c:when test="${ line.matches('^[^a-z]+') }">
 	        			<c:out value="${ line }" />
+	        		</c:when>
+	        		<c:when test="${ empty line }">
 	        		</c:when>
 	        		<c:otherwise>	        		
 	        			<input type="text" name="line${ loop.index }" id="line${ loop.index }" size="35" value='<c:if test="${ line != translation[loop.index] }">${ translation[loop.index] }</c:if>' />
