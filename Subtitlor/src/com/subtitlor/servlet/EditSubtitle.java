@@ -10,10 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.subtitlor.dao.DaoException;
+import com.subtitlor.dao.DaoFactory;
+import com.subtitlor.dao.daoUser;
 import com.subtitlor.utilities.SubtitlesHandler;
 
 public class EditSubtitle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private daoUser daoUser;
+	
+	public void init() throws ServletException {
+		DaoFactory daoFactory = DaoFactory.getInstance();
+		this.daoUser = daoFactory.getDaoUser();
+	}
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String filePath = getServletContext().getRealPath("WEB-INF/../");
@@ -62,6 +71,16 @@ public class EditSubtitle extends HttpServlet {
 			/* Save the array in the subtitle object and into a new srt file */
 			subtitles.setTranslatedSubtitles(translation);
 			String newFile = subtitles.saveTranslation(fileName, filePath);
+			
+			/* Add the file name to the database */
+			SubtitlesHandler sub = new SubtitlesHandler();
+			sub.setName(newFile);
+			try {
+				daoUser.add(sub, "translated");
+				request.setAttribute("translatedList", daoUser.list("translated"));
+			} catch (DaoException e1) {
+				request.setAttribute("error", e1.getMessage());
+			}
 			
 			request.getSession().setAttribute("newFile", newFile);
 			request.setAttribute("subtitles", subs);

@@ -8,8 +8,8 @@ import java.util.List;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
-import com.subtitlor.beans.Subtitle;
 import com.subtitlor.dao.DaoException;
+import com.subtitlor.utilities.SubtitlesHandler;
 
 
 public class daoUserImpl implements daoUser {
@@ -20,7 +20,7 @@ public class daoUserImpl implements daoUser {
     }
 
     @Override
-    public void add(Subtitle sub, String type) throws DaoException {
+    public void add(SubtitlesHandler sub, String type) throws DaoException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;     
         
@@ -56,8 +56,8 @@ public class daoUserImpl implements daoUser {
     }
 
     @Override
-    public List<Subtitle> list(String type) throws DaoException {
-        List<Subtitle> subList = new ArrayList<Subtitle>();
+    public List<SubtitlesHandler> list(String type) throws DaoException {
+        List<SubtitlesHandler> subList = new ArrayList<SubtitlesHandler>();
         Connection connection = null;
         Statement statement = null;
         ResultSet result = null;
@@ -74,7 +74,7 @@ public class daoUserImpl implements daoUser {
                 String name = result.getString("name");
                 int id = result.getInt("id");
 
-                Subtitle sub = new Subtitle();
+                SubtitlesHandler sub = new SubtitlesHandler();
                 sub.setName(name);
                 sub.setId(id);
 

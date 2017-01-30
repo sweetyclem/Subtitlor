@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import com.subtitlor.beans.Subtitle;
 import com.subtitlor.dao.DaoException;
 import com.subtitlor.dao.DaoFactory;
 import com.subtitlor.dao.daoUser;
+import com.subtitlor.utilities.SubtitlesHandler;
 
 public class Home extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -42,8 +42,7 @@ public class Home extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String SAVE_PATH = getServletContext().getRealPath("WEB-INF/../");
-		Subtitle sub = new Subtitle();
+		String SAVE_PATH = getServletContext().getRealPath("WEB-INF/../");		
 		
 		/* Open, read and save the srt file */
 		Part part = request.getPart("file");
@@ -56,6 +55,7 @@ public class Home extends HttpServlet {
 			fileName = fileName.substring(fileName.lastIndexOf('/') + 1).substring(fileName.lastIndexOf('\\') + 1);
 			
 			/* Add the file name to the database */
+			SubtitlesHandler sub = new SubtitlesHandler();
 			sub.setName(fileName);
 			try {
 				daoUser.add(sub, "original");

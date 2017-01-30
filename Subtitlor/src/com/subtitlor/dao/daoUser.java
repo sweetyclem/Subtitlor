@@ -1,9 +1,9 @@
 package com.subtitlor.dao;
 
 import java.util.List;
-import com.subtitlor.beans.Subtitle;
+import com.subtitlor.utilities.SubtitlesHandler;
 
 public interface daoUser {
-	void add(Subtitle sub, String type) throws DaoException;
-	List<Subtitle> list(String type) throws DaoException;
+	void add(SubtitlesHandler sub, String type) throws DaoException;
+	List<SubtitlesHandler> list(String type) throws DaoException;
 }

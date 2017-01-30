@@ -11,6 +11,21 @@ import java.util.ArrayList;
 public class SubtitlesHandler {
 	private ArrayList<String> originalSubtitles = null;
 	private ArrayList<String> translatedSubtitles = null;
+	private String name;
+	private int id;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	/* Read the srt file into an array */
 	public SubtitlesHandler(String fileName) throws FileNotFoundException {
@@ -27,6 +42,10 @@ public class SubtitlesHandler {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public SubtitlesHandler() {
+		
 	}
 	
 	public ArrayList<String> getSubtitles() {
