@@ -70,6 +70,7 @@ public class Home extends HttpServlet {
 				}
 				if (exists == false)
 					daoUser.add(sub, "original");
+				request.setAttribute("exists", exists);
 				request.setAttribute("srtFiles", srtFiles);
 			} catch (DaoException e1) {
 				request.setAttribute("error", e1.getMessage());

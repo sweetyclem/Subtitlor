@@ -45,7 +45,6 @@ public class EditSubtitle extends HttpServlet {
 					SubtitlesHandler sub = new SubtitlesHandler();
 					sub.readSubtitles(filePath + file.getName());
 					sub.copySubtitles();
-					System.out.println(sub.getTranslatedSubtitles().get(2));
 					request.setAttribute("translation", sub.getTranslatedSubtitles());
 				}
 			}
@@ -100,12 +99,8 @@ public class EditSubtitle extends HttpServlet {
 			SubtitlesHandler translation = new SubtitlesHandler();
 			translation.readSubtitles(filePath + newFile);
 			translation.setName(newFile);
+			boolean exists = false;
 			try {			
-				if (translation.getId() == 0)
-				{
-					//daoUser.add(translation, "translated");
-					translation.setId(id);
-				}
 				/* Send the translation if available */
 				List<SubtitlesHandler> translatedFiles = daoUser.list("translated");
 				String tmp = fileName.replace(".srt", "-new.srt");
@@ -115,10 +110,13 @@ public class EditSubtitle extends HttpServlet {
 						SubtitlesHandler sub = new SubtitlesHandler();
 						sub.readSubtitles(filePath + file.getName());
 						sub.copySubtitles();
-						System.out.println(sub.getTranslatedSubtitles().get(2));
 						request.setAttribute("translation", sub.getTranslatedSubtitles());
+						exists = true;
+						break;
 					}
 				}
+				if (!(exists))
+					daoUser.add(translation, "translated");
 			} catch (Exception e1) {
 				System.out.println(e1.getMessage());
 			}

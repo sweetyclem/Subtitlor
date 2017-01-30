@@ -2,12 +2,18 @@
 <body>
 	<%@ include file="header.jsp" %>
 	<h1>Bienvenue dans l'éditeur de sous titres</h1>
-	<c:if test="${ !empty file }">
-	<p><c:out value="Le fichier ${ file } a été uploadé !" /><br>
-	<a href="/Subtitlor/edit?file=${ file }">Editer</a>
-	</p>
-	<br>
-	</c:if>
+	<c:choose>
+		<c:when test="${ exists == false }">
+		<p><c:out value="Le fichier ${ file } a été uploadé !" /><br>
+			<a href="/Subtitlor/edit?file=${ file }">Editer</a>
+		</p>
+		</c:when>
+		<c:when test="${ exists == true && !empty file}">
+		<p><c:out value="Le fichier ${ file } existe déjà" /><br>
+			<a href="/Subtitlor/edit?file=${ file }">Editer</a>
+		</p>
+		</c:when>
+	</c:choose>
 	<h2>Télécharger un fichier srt</h2>
 	<form action="<c:url value="/home"/>" method="post" enctype="multipart/form-data">
 		<fieldset>
