@@ -20,10 +20,10 @@ public class DaoFactory {
 			Class.forName("com.mysql.jdbc.Driver");
 		}
 		catch (ClassNotFoundException e) {
-			// TODO: handle exception
+			System.out.println("Class not found line 23");
 		}
 		
-		DaoFactory instance = new DaoFactory("jdbc:mysql://localhost:3306/javaee", "root", "mari");
+		DaoFactory instance = new DaoFactory("jdbc:mysql://localhost:3306/subtitlor", "root", "pass");
 		return instance;
 	}
 	
@@ -33,7 +33,7 @@ public class DaoFactory {
 		return connection;
 	}
 	
-	public UtilisateurDao getUtilisateurDao() {
-		return new UtilisateurDaoImpl(this);
+	public daoUser getDaoUser() {
+		return new daoUserImpl(this);
 	}
 }
