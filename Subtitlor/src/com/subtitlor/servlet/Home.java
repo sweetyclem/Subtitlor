@@ -5,6 +5,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -36,7 +37,7 @@ public class Home extends HttpServlet {
             request.setAttribute("srtFiles", daoUser.list("original"));
         }
         catch (DaoException e) {
-            request.setAttribute("erreur", e.getMessage());
+            request.setAttribute("error", e.getMessage());
         }
 		this.getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
 	}
@@ -56,10 +57,20 @@ public class Home extends HttpServlet {
 			
 			/* Add the file name to the database */
 			SubtitlesHandler sub = new SubtitlesHandler();
+			boolean exists = false;
 			sub.setName(fileName);
 			try {
-				daoUser.add(sub, "original");
-				request.setAttribute("srtFiles", daoUser.list("original"));
+				ArrayList<SubtitlesHandler> srtFiles =  (ArrayList<SubtitlesHandler>) daoUser.list("original");
+				for (SubtitlesHandler file : srtFiles) {
+					if (file.getName().equals(fileName))
+					{
+						exists = true;
+						break;
+					}
+				}
+				if (exists == false)
+					daoUser.add(sub, "original");
+				request.setAttribute("srtFiles", srtFiles);
 			} catch (DaoException e1) {
 				request.setAttribute("error", e1.getMessage());
 			}

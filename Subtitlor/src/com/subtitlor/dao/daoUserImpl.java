@@ -3,7 +3,6 @@ package com.subtitlor.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
@@ -22,7 +21,7 @@ public class daoUserImpl implements daoUser {
     @Override
     public void add(SubtitlesHandler sub, String type) throws DaoException {
         Connection connection = null;
-        PreparedStatement preparedStatement = null;     
+        PreparedStatement preparedStatement = null;
         
         try {
             connection = daoFactory.getConnection();
@@ -52,12 +51,11 @@ public class daoUserImpl implements daoUser {
                 throw new DaoException("Impossible de communiquer avec la base de données");
             }
         }
-
     }
 
     @Override
-    public List<SubtitlesHandler> list(String type) throws DaoException {
-        List<SubtitlesHandler> subList = new ArrayList<SubtitlesHandler>();
+    public ArrayList<SubtitlesHandler> list(String type) throws DaoException {
+        ArrayList<SubtitlesHandler> subList = new ArrayList<SubtitlesHandler>();
         Connection connection = null;
         Statement statement = null;
         ResultSet result = null;

@@ -11,8 +11,8 @@ import java.util.ArrayList;
 public class SubtitlesHandler {
 	private ArrayList<String> originalSubtitles = null;
 	private ArrayList<String> translatedSubtitles = null;
-	private String name;
-	private int id;
+	private String name = "";
+	private int id = 0;
 	
 	public int getId() {
 		return id;
@@ -26,9 +26,9 @@ public class SubtitlesHandler {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
 	/* Read the srt file into an array */
-	public SubtitlesHandler(String fileName) throws FileNotFoundException {
+	public void readSubtitles(String fileName) throws FileNotFoundException {
 		originalSubtitles = new ArrayList<String>();
 		translatedSubtitles = new ArrayList<String>();
 		BufferedReader br;
@@ -42,10 +42,6 @@ public class SubtitlesHandler {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public SubtitlesHandler() {
-		
 	}
 	
 	public ArrayList<String> getSubtitles() {
