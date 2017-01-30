@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +20,6 @@ import com.subtitlor.utilities.SubtitlesHandler;
 public class EditSubtitle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private daoUser daoUser;
-	private int id = 0;
 
 	public void init() throws ServletException {
 		DaoFactory daoFactory = DaoFactory.getInstance();
@@ -27,7 +27,7 @@ public class EditSubtitle extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String filePath = getServletContext().getRealPath("WEB-INF/../");
+		String filePath = getServletContext().getRealPath("WEB-INF/../");		
 		String fileName = request.getParameter("file");
 
 		/* start a session and save the srt file name and path in it */
