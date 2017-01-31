@@ -12,7 +12,7 @@
     <servlet-name>Home</servlet-name>
     <servlet-class>com.subtitlor.servlet.Home</servlet-class>
     <multipart-config>
-      <location>C:/Users/uSlam/fichierstmp</location>
+      <location>/home/clem/eclipse</location>
       <max-file-size>10485760</max-file-size>
       <max-request-size>52428800</max-request-size>
       <file-size-threshold>1048576</file-size-threshold>

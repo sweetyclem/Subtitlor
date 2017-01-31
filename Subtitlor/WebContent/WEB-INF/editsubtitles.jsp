@@ -10,7 +10,10 @@
 	
     <form method="post" action="/Subtitlor/edit?file=${ fileName }">    
         <input class="btn" type="submit" value="Enregistrer" style="position:fixed; top: 90px; right: 100px;" />
-        <a class="btn" style="position:fixed; top: 130px; right: 100px; font-size: 10px" href="/Subtitlor/download">Télécharger</a>
+        <%-- Display the download link only if there's a translation --%>
+        <c:if test="${ !empty newFile || !empty translatedFiless }">
+        	<a class="btn" style="position:fixed; top: 130px; right: 100px;" href="/Subtitlor/download">Télécharger</a>
+	    </c:if>
 	    <table>
 	        <c:forEach items="${ subtitles }" var="line" varStatus="loop">
 	        	<tr style="border: solid 1px black">

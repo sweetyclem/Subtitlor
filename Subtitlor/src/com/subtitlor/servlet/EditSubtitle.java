@@ -47,6 +47,7 @@ public class EditSubtitle extends HttpServlet {
 					SubtitlesHandler sub = new SubtitlesHandler();
 					sub.readSubtitles(filePath + file.getName());
 					sub.copySubtitles();
+					request.getSession().setAttribute("translatedfile", file.getName());
 					request.setAttribute("translation", sub.getTranslatedSubtitles());
 				}
 			}

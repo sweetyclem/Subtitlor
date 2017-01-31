@@ -21,7 +21,7 @@ public class Download extends HttpServlet {
 
 		/* If no file name is provided, throw an exception */
 		if(fileName == null || fileName.equals("")){
-			throw new ServletException("File Name can't be null or empty");
+			fileName = (String) request.getSession().getAttribute("translatedFile");			
 		}
 		
 		/* Create a file object */

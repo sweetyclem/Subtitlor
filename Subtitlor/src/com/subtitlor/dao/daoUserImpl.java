@@ -79,7 +79,7 @@ public class daoUserImpl implements daoUser {
                 subList.add(sub);
             }
         } catch (SQLException e) {
-            throw new DaoException("Impossible de communiquer avec la base de donn�es (vérifier build path ou mysql)");
+            throw new DaoException("Impossible de communiquer avec la base de données (vérifier build path ou mysql)");
         }
         finally {
             try {
@@ -87,7 +87,7 @@ public class daoUserImpl implements daoUser {
                     connection.close();  
                 }
             } catch (SQLException e) {
-                throw new DaoException("Impossible de communiquer avec la base de donn�es (vérifier build path ou mysql)");
+                throw new DaoException("Impossible de communiquer avec la base de données (vérifier build path ou mysql)");
             }
         }
         return subList;
