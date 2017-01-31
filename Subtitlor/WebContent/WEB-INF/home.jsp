@@ -2,6 +2,7 @@
 <body>
 	<%@ include file="header.jsp" %>
 	<h1>Bienvenue dans l'éditeur de sous titres</h1>
+	<br>
 	<c:choose>
 		<c:when test="${ exists == false }">
 		<p><c:out value="Le fichier ${ file } a été uploadé !" /><br>
@@ -23,21 +24,24 @@
                 <input type="file" name="file" />
                 <br />
                 <br>
-                <input type="submit" value="Envoyer"/>
+                <input class="btn" type="submit" value="Envoyer"/>
                 <br />                
 		</fieldset>
 	</form>
+	
 	<h2>Sous titres existants</h2>
-	<ul>
-	<c:if test="${ !empty error }">
-		<c:out value="${ error }"></c:out>
-	</c:if>
-	<c:forEach items="${ srtFiles }" var="file" varStatus="loop">
-		<li>
-			<c:out value="${ file.name }"></c:out>
-			<a href="/Subtitlor/edit?file=${ file.name }">Editer</a>
-		</li>
-	</c:forEach>
-	</ul>
+	<fieldset>
+		<ul>
+		<c:if test="${ !empty error }">
+			<c:out value="${ error }"></c:out>
+		</c:if>
+		<c:forEach items="${ srtFiles }" var="file" varStatus="loop">
+			<li>
+				<c:out value="${ file.name }"></c:out>
+				<a href="/Subtitlor/edit?file=${ file.name }">Editer</a>
+			</li>
+		</c:forEach>
+		</ul>
+	</fieldset>
 </body>
 </html>

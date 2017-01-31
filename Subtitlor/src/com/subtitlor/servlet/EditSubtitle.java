@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +28,9 @@ public class EditSubtitle extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String filePath = getServletContext().getRealPath("WEB-INF/../");		
 		String fileName = request.getParameter("file");
+		
+		if (fileName == null)
+			fileName = "";
 
 		/* start a session and save the srt file name and path in it */
 		HttpSession session = request.getSession();
@@ -92,7 +94,8 @@ public class EditSubtitle extends HttpServlet {
 			}
 
 			/* Save the array in the subtitle object and into a new srt file */
-			subtitles.setTranslatedSubtitles(translationList);
+			subtitles.setTranslatedSubtitles(translationList);		
+			request.setAttribute("translation", translationList);
 			String newFile = subtitles.saveTranslation(fileName, filePath);
 
 			/* Add the file name to the database */
@@ -109,7 +112,7 @@ public class EditSubtitle extends HttpServlet {
 					{
 						SubtitlesHandler sub = new SubtitlesHandler();
 						sub.readSubtitles(filePath + file.getName());
-						sub.copySubtitles();
+						sub.copySubtitles();						
 						request.setAttribute("translation", sub.getTranslatedSubtitles());
 						exists = true;
 						break;

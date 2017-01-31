@@ -9,8 +9,8 @@
 
 	
     <form method="post" action="/Subtitlor/edit?file=${ fileName }">    
-        <input type="submit" value="Enregistrer" style="position:fixed; top: 10px; right: 100px;" />
-        <a style="border: solid 1px black; padding: 3px; text-decoration: none; color:black; position:fixed; top: 40px; right: 100px;" href="/Subtitlor/download">Télécharger</a>
+        <input class="btn" type="submit" value="Enregistrer" style="position:fixed; top: 90px; right: 100px;" />
+        <a class="btn" style="position:fixed; top: 130px; right: 100px; font-size: 10px" href="/Subtitlor/download">Télécharger</a>
 	    <table>
 	        <c:forEach items="${ subtitles }" var="line" varStatus="loop">
 	        	<tr style="border: solid 1px black">
