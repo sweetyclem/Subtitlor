@@ -28,17 +28,18 @@
 		</fieldset>
 	</form>
 	<h2>Sous titres existants</h2>
-	<fieldset></fieldset>
-	<ul>
-	<c:if test="${ !empty error }">
-		<c:out value="${ error }"></c:out>
-	</c:if>
-	<c:forEach items="${ srtFiles }" var="file" varStatus="loop">
-		<li>
-			<c:out value="${ file.name }"></c:out>
-			<a href="/Subtitlor/edit?file=${ file.name }">Editer</a>
-		</li>
-	</c:forEach>
-	</ul>
+	<fieldset>
+		<ul>
+		<c:if test="${ !empty error }">
+			<c:out value="${ error }"></c:out>
+		</c:if>
+		<c:forEach items="${ srtFiles }" var="file" varStatus="loop">
+			<li>
+				<c:out value="${ file.name }"></c:out>
+				<a href="/Subtitlor/edit?file=${ file.name }">Editer</a>
+			</li>
+		</c:forEach>
+		</ul>
+	</fieldset>
 </body>
 </html>
